@@ -5,24 +5,25 @@
 <title>时间计算</title>
 <script typet="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
 </head>
-<body>
+<body style="background-color:#F0FFF0">
 	<div id="time_">
 		
 	</div>
 	<script type="text/javascript">
 	
-	
-	
-	var stime = "2018-12-23 05:00:00";
+(function (document) {
+   
+    var stime = "2018-12-23 05:00:00";
 	var sta_str = (stime).replace(/-/g,"/");  
-	let timestamp = new Date(sta_str).getTime();//时间戳
+	var timestamp = new Date(sta_str).getTime();//时间戳
+	var currenttime = new Date().getTime();//当前的时间戳
 	for(var i=0;i<1500;i++){
 		timestamp = getTime(timestamp);
 		
 	}
 
 	function getTime(timestamp){
-			let currenttime = new Date().getTime();//当前的时间戳
+
 			var lastday_time = currenttime - 48 * 60 * 60 * 1000;
 			var start_time= timestamp + 19 * 60 * 60 * 1000;
 			var end_time= start_time + 7 * 60 * 60 * 1000;
@@ -32,7 +33,7 @@
 			var dateAfter = new Date(start_time);
 			var endAfter = new Date(end_time);   
 
-			var str = dateAfter.getFullYear() + '-' + PrefixInteger((dateAfter.getMonth() + 1),2) + '-' + PrefixInteger(dateAfter.getDate(),2)+ ' ' + PrefixInteger(dateAfter.getHours(),2)+':00:00  至 '+PrefixInteger(endAfter.getHours(),2)+':00 <br/>';
+			var str = dateAfter.getFullYear() + '-' + PrefixInteger((dateAfter.getMonth() + 1),2) + '-' + PrefixInteger(dateAfter.getDate(),2)+ ' ' + PrefixInteger(dateAfter.getHours(),2)+':00 至 '+PrefixInteger(endAfter.getHours(),2)+':00 <br/>';
 			if(start_time>=lastday_time&&start_time<=tenday_time){
 			    $("#time_").append(str).append('<br/>');
 			}
@@ -44,6 +45,13 @@
 	function PrefixInteger(num, n) {
         return (Array(n).join(0) + num).slice(-n);
     }
+   
+   
+   
+   
+})(document);
+	
+	
 		
 	</script>
 
